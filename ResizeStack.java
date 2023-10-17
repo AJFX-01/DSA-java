@@ -56,9 +56,13 @@ public class ResizeStack<Item> implements Iterable<Item> {
         a[n-1] = null;
         n--;
         //shrink the size of the array if neccessary
-        if (n > 0 && n = a.length/4 ) resize(a.length/2);
+        if (n > 0 && n == a.length/4 ) resize(a.length/2);
         return item;
     }
 
-    
+    // Return the ast eement of the satck but not remove
+    public Item peek() {
+        if (isEmpty()) throw new NoSuchElementException("Stack underfow");
+        return a[n-1];
+    }
 }
