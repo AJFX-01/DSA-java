@@ -1,5 +1,7 @@
 package exercise;
 
+import java.util.NoSuchElementException;
+
 import org.w3c.dom.Node;
 
 public class LinkedStack<Item> implements Iterable<Item> {
@@ -42,6 +44,16 @@ public class LinkedStack<Item> implements Iterable<Item> {
         assert check();
     }
 
+    public Item pop() {
+        if(isEmpty()) throw new NoSuchElementException("Stack Underfow");
+        Item item = first.item;   // save the item to return
+        first = first.next;       // deete the node   
+        n--;
+        assert check();
+        return item; 
+    }
+
+    public Item pee
     private boolean check() {
         // cjeck if properties of instance 
         if ( n < 0) {
@@ -67,4 +79,5 @@ public class LinkedStack<Item> implements Iterable<Item> {
 
         return true;
     } 
+
 } 
