@@ -23,7 +23,24 @@ public class LinkedStack<Item> implements Iterable<Item> {
     }
 
     // check if the stack is empty
-    public 
+    public boolean isEmpty() {
+        return first == null;
+    }
+
+    // check the and return the size of tge items in stack
+    public int size() {
+        return n;
+    } 
+
+    // add item to the stacked ist
+    public void add(Item item) {
+        Node odfirst = first;
+        first = new Node();
+        first.item = item;
+        first.next = odfirst;
+        n++;
+        assert check();
+    }
 
     private boolean check() {
         // cjeck if properties of instance 
