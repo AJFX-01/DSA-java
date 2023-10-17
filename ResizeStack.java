@@ -1,6 +1,11 @@
 package exercise;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.algs4.ResizingArrayStack;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 public class ResizeStack<Item> implements Iterable<Item> {
     
@@ -66,11 +71,36 @@ public class ResizeStack<Item> implements Iterable<Item> {
         return a[n-1];
     }
 
-    public Iterator<Item> Iterator() {
+    public Iterator<Item> iterator() {
         return new ReverseArrayIterator(); 
+    }
+
+    private class ReverseArrayIterator implements Iterator<Item> {
+        private int i;
+
+        public ReverseArrayIterator(){
+            i = n-1; 
+        }
+        public boolean hasNext() {
+            return i >= 0;
+        }
+
+        public Item next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            return a[i--];
+        }
+       
+    }
+
+    public static void main(String[] args) {
+        ResizingArrayStack<String> stack = new ResizingArrayStack<String>();
+        while (!StdIn.isEmpty()) {
+            String item = StdIn.readString();
+            if (!item.equals("-")) stack.push(item);
+            else if (!stack.isEmpty()) StdOut.print(stack.pop() + " ");
+        }
+        StdOut.println("(" + stack.size() + " left on stack)");
     }
 }
 
 
-
-a array
