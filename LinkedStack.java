@@ -3,7 +3,9 @@ package exercise;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import org.w3c.dom.Node;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+
 
 public class LinkedStack<Item> implements Iterable<Item> {
     // initiaize the size of stack
@@ -59,6 +61,12 @@ public class LinkedStack<Item> implements Iterable<Item> {
         return first.item;
     }
 
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (Item item : this ) s.append(item + " ");
+
+        return s.toString();
+    }
     public Iterator<Item> iterator() {
         return new LinkedIterator();
     }
@@ -102,5 +110,18 @@ public class LinkedStack<Item> implements Iterable<Item> {
 
         return true;
     } 
+
+
+    public static void main(String[] args) {
+        LinkedStack<String> stack = new LinkedStack<String>();
+        while (!StdIn.isEmpty()) {
+            String item = StdIn.readString();
+            if (!item.equals("-")) stack.add(item);
+            else if (!stack.isEmpty())
+            StdOut.print(stack.pop() + " "); 
+        }
+
+        StdOut.println("(" + stack.size() + " left on stack )");
+    }
 
 } 
