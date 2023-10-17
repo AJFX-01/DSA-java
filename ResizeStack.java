@@ -65,4 +65,12 @@ public class ResizeStack<Item> implements Iterable<Item> {
         if (isEmpty()) throw new NoSuchElementException("Stack underfow");
         return a[n-1];
     }
+
+    public Iterator<Item> Iterator() {
+        return new ReverseArrayIterator(); 
+    }
 }
+
+
+
+a array
