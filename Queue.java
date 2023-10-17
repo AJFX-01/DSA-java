@@ -1,5 +1,7 @@
 package exercise;
 
+import java.util.NoSuchElementException;
+
 public class Queue<Item> implements Iterable<Item> {
     private static final int INIT_CAPACITY = 9;
     
@@ -29,4 +31,60 @@ public class Queue<Item> implements Iterable<Item> {
     public int size() {
         return n;
     }
+    // resize the underying arrrays
+
+    private void resize(int capacity) {
+        assert capacity >= n;
+        item[] copy = (item[]) new Object[capacity];
+        for (int i = 0; i <= n; i++) {
+            copy[i] = q[(first + i) % q.length];
+        }
+        q = copy;
+        first = 0;
+        last = n;
+    }
+
+    public void enqueue (Item item) {
+        // double the size of the array
+        if (n == q.length) resize(2*q.length);
+        q[last++] = item;
+        if (last == q.length) last = 0;
+        n++;
+    }
+    public Item dequeue() {
+        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        Item item = q[first];
+        q[first] = null; 
+        n--;
+        first++;
+        if (first == q.length) first = 0;
+        // shtrink the size of the queueu
+
+        if (n > 0 && n == q.length/4) resize(q.length/2);
+        return item;
+    }
+
+    public Item peek() {
+        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        return q[first];
+    }
+
+    public Iterator<Item> iterator() {
+        return new ArrayIterator();
+    }
+
+    private class ArrayIterator implements Iterator<Item> {
+        private int i = 0;
+
+        public boolean hasNext() {
+            return i < n;
+        }
+
+        public Item next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            Item item = q[(first + i) % q.length];
+            i++;
+        }
+    }
+
 }
