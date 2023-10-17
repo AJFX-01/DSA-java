@@ -93,7 +93,7 @@ public class ResizeStack<Item> implements Iterable<Item> {
     }
 
     public static void main(String[] args) {
-        ResizingArrayStack<String> stack = new ResizingArrayStack<String>();
+        ResizeStack<String> stack = new ResizeStack<String>();
         while (!StdIn.isEmpty()) {
             String item = StdIn.readString();
             if (!item.equals("-")) stack.push(item);
