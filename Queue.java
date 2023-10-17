@@ -1,6 +1,11 @@
 package exercise;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 public class Queue<Item> implements Iterable<Item> {
     private static final int INIT_CAPACITY = 9;
@@ -35,7 +40,7 @@ public class Queue<Item> implements Iterable<Item> {
 
     private void resize(int capacity) {
         assert capacity >= n;
-        item[] copy = (item[]) new Object[capacity];
+        Item[] copy = (Item[]) new Object[capacity];
         for (int i = 0; i <= n; i++) {
             copy[i] = q[(first + i) % q.length];
         }
@@ -84,7 +89,19 @@ public class Queue<Item> implements Iterable<Item> {
             if (!hasNext()) throw new NoSuchElementException();
             Item item = q[(first + i) % q.length];
             i++;
+            return item;
         }
     }
 
+
+    public static void main(String[] args) {
+        Queue<String> queue = new Queue<String>();
+        while(!StdIn.isEmpty()) {
+            String item = StdIn.readString();
+            if(!item.equals("-")) queue.enqueue(item);
+            else if (!queue.isEmpty()) StdOut.print(queue.dequeue() + " ");
+             
+        }
+        StdOut.println("(" + queue.size() + " left on queue)");
+    }
 }
