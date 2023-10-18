@@ -1,8 +1,12 @@
+package exercise;
+
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import org.w3c.dom.Node;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
-public class LinkedQueue<Item> implements Iterable<item> {
+public class LinkedQueue<Item> implements Iterable<Item> {
 
     private int n;
     private Node first;
@@ -46,7 +50,7 @@ public class LinkedQueue<Item> implements Iterable<item> {
         assert check(); 
     }
 
-    public void dequeue() {
+    public Item dequeue() {
         if (isEmpty()) throw new NoSuchElementException("Queue Underflow");
         Item item = first.item;
         first = first.next;
@@ -94,7 +98,45 @@ public class LinkedQueue<Item> implements Iterable<item> {
         }
         if (numberOfNodes != n ) return false;
         // check for ast
+        Node lastNode = first;
+        while (lastNode.next != null) {
+            lastNode = lastNode.next;
+        }
+        if (last != lastNode) return false;
+    }
+
+    return true;
+   }
+
+   private class LinkedIterator implements Iterator<Item> {
+    private Node current = first;
+
+    public boolean hasNext() {
+        return current != null;
+    }
+    
+    public Item next() {
+        if (!hasNext()) throw new NoSuchElementException();
+        Item item = current.item;
+        current = current.next;
+        return item;
     }
    }
+   public Iterator<Item> iterator() {
+    return new LinkedIterator(); 
+   }
+   
+
+    public static void main(String[] args) {
+        LinkedQueue<String> queue = new LinkedQueue<String>();
+        while (!StdIn.isEmpty()) {
+            String item = StdIn.readString();
+            if (!item.equals("-"))
+                queue.enqueue(item);
+            else if (!queue.isEmpty())
+                StdOut.print(queue.dequeue() + " ");
+        }
+        StdOut.println("(" + queue.size() + " left on queue)");
+    }
 
 } 
