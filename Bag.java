@@ -1,5 +1,6 @@
 package exercise;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import org.w3c.dom.Node;
@@ -33,7 +34,7 @@ public class Bag<Item> implements Iterable<Item> {
     }
 
     public void add(Item item) {
-        Node<item> oldfirst = first;
+        Node<Item> oldfirst = first;
         first = new Node<Item>();
         first.item = item;
         first.next = oldfirst;
