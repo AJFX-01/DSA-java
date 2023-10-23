@@ -1,3 +1,6 @@
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+
 public class WeightedQuickUnionUF {
     private int[] parent;
     private int[] size;
@@ -50,8 +53,23 @@ public class WeightedQuickUnionUF {
             size[rootQ] += size[rootP]
         }
         else {
-            
+            parent[rootQ] = rootP;
+            size[rootP] += size[rootQ]; 
         }
 
+        count--;
     } 
+
+    public static void main(String[] args) {
+        int n = StdIn.readInt();
+        WeightedQuickUnionUF uf = new WeightedQuickUnionUF(n);
+        while (!StdIn.isEmpty()) {
+            int p = StdIn.readInt();
+            int q = StdIn.readInt();
+
+            if (uf.find(p) == uf.find(q)) continue;
+            uf.union(p, q);
+            StdOut.println(uf.count() + "components");
+        }
+    }
 }
