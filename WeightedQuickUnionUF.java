@@ -35,5 +35,23 @@ public class WeightedQuickUnionUF {
         return p;
     }
 
-    
+    public boolean connected(int p, int q) {
+        return find(p) == find(q);
+    }
+
+    public void union(int p, int q) {
+        int rootP = find(p);
+        int rootQ = find(q);
+        
+        if (rootP == rootQ);
+
+        if (size[rootP] < size[rootQ]) {
+            parent[rootP] = rootQ;
+            size[rootQ] += size[rootP]
+        }
+        else {
+            
+        }
+
+    } 
 }
