@@ -30,7 +30,12 @@ public class Percolation {
     }
 
     // is the site (row, col) full?
-    public boolean isFull(int row, int col)
+    public boolean isFull(int row, int col) {
+        if ( !isvalid(row, col)) {
+            throw new IllegalAccessException("Grid size invalid")
+        }
+        w
+    }
 
     // returns the number of open sites
     public int numberOfOpenSites()
