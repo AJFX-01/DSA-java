@@ -1,3 +1,8 @@
+package exercise;
+
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+
 public class QuickUnionUF {
     private int[] parent;  // parent[i] = parent of i
     private int count;     // number of components
