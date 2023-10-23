@@ -50,7 +50,7 @@ public class WeightedQuickUnionUF {
 
         if (size[rootP] < size[rootQ]) {
             parent[rootP] = rootQ;
-            size[rootQ] += size[rootP]
+            size[rootQ] += size[rootP];
         }
         else {
             parent[rootQ] = rootP;
