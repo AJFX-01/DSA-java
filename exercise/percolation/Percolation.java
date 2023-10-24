@@ -1,5 +1,8 @@
 package exercise.percolation;
 
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+
 public class Percolation {
     // creates n-by-n grid, with all sites initially blocked
     
@@ -33,6 +36,8 @@ public class Percolation {
     public void open(int row, int col) {
         int index = getIndex(row, col);
         openSites[index] = true;
+
+        ConnectedNeighbor(row, col);
         
     }
 
@@ -123,6 +128,19 @@ public class Percolation {
 
     // test client (optional)
     public static void main(String[] args) {
+        int n = StdIn.readInt();
+        Percolation percolation = new Percolation(n);
+        while(!StdIn.isEmpty()) {
+            int row = StdIn.readInt();
+            int cok = StdIn.readInt();
+            
+            if (percolation.isOpen(row, cok)) {
+                if (percolation.isFull(row, cok)) {
+                    if (percolation.percolates()) continue;
+                }
+            }
+           StdOut.println(percolation.numberOfOpenSites() + "percoates");
+        }
 
     }
 }
