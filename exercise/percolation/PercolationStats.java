@@ -1,6 +1,7 @@
 package exercise.percolation;
 
 import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 
@@ -8,10 +9,11 @@ public class PercolationStats {
     private double[] thresholds;
     private int totalTrials; 
      // perform independent trials on an n-by-n grid
-     public PercolationStats(int n, int trials){
+     public PercolationStats(int n, int trials) throws IllegalAccessException{
         // check if trails and gird size n
-        if ( trials <= 0 || n < 0) throw new IllegalAccessException("invalid range of trais time or gride size");
-        
+        if ( trials <= 0 || n < 0) {
+            throw new IllegalAccessException("invalid range of trais time or gride size");
+        }
         // set tota tria times
         totalTrials = trials;
         // the threshod set to the trai times ramge
@@ -67,10 +69,15 @@ public class PercolationStats {
      }
  
     // test client (see below)
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException {
         int n = StdIn.readInt();
         int trials = StdIn.readInt();
 
         // instantiae the cass
+        PercolationStats stats = new PercolationStats(n, trials);
+
+        StdOut.println("Mean: " + stats.mean());
+        StdOut.println("Standard dev: " + stats.stddev());
+        StdOut.println("95% Confidence Interval: " + stats.confidenceLo() + ", " + stats.confidenceHi());
     }
 }
