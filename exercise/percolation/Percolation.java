@@ -14,7 +14,7 @@ public class Percolation {
         if (n < 0) throw new IllegalArgumentException(" Grid size must be greater than n");
 
         gridsize = n;
-        grid = new boolean[n][n];
+        
         int totalSites = n * n;
         parent = new int[totalSites];
         size = new int[totalSites];
