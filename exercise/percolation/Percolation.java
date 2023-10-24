@@ -133,9 +133,14 @@ public class Percolation {
         while(!StdIn.isEmpty()) {
             int row = StdIn.readInt();
             int cok = StdIn.readInt();
-            
+             // You can now open sites,
+            percolation.open(row, cok);
+
+            // check if they are open, 
             if (percolation.isOpen(row, cok)) {
+                //  check if they are full
                 if (percolation.isFull(row, cok)) {
+                    // and check if the system percolates.
                     if (percolation.percolates()) continue;
                 }
             }
