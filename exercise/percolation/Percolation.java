@@ -44,9 +44,7 @@ public class Percolation {
 
     // is the site (row, col) full?
     public boolean isFull(int row, int col) {
-        if ( !isvalid(row, col)) {
-            throw new IllegalAccessException("Grid size invalid");
-        }
+        
         int index = getIndex(row, col);
         return isOpen(row, col) && isConnected(index, virtualTop);
     }
@@ -54,7 +52,13 @@ public class Percolation {
     // returns the number of open sites
     public int numberOfOpenSites() {
         int count = 0;
-        for (int i = 0; i <  )
+        for (int i = 0; i < gridsize * gridsize; i++) {
+            if (openSites[i]) {
+                count++;
+            }
+            
+        }
+        return count;
     }
 
     // does the system percolate?
@@ -82,7 +86,7 @@ public class Percolation {
 
             if (isvalid(newRow, newCol) && isOpen(newRow, newCol)) {
                 int index = getIndex(row, col);
-                int neighborIndex = getIndex(newRow, newCol)
+                int neighborIndex = getIndex(newRow, newCol);
                 union(index, neighborIndex);
             }
         }
@@ -110,6 +114,7 @@ public class Percolation {
             parent[p] = parent[parent[p]];
             p = parent[p];
         }
+        return p;
     }
 
     private boolean isConnected(int p, int q) {
