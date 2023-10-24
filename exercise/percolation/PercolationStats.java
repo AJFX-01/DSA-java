@@ -2,6 +2,7 @@ package exercise.percolation;
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
     private double[] thresholds;
@@ -43,18 +44,33 @@ public class PercolationStats {
 
      // sample mean of percolation threshold
      public double mean() {
-
+        return StdStats.mean(thresholds);
      }
  
      // sample standard deviation of percolation threshold
-     public double stddev()
+     public double stddev() {
+        return StdStats.stddev(thresholds);
+     }
  
      // low endpoint of 95% confidence interval
-     public double confidenceLo()
+     public double confidenceLo() {
+        double mean = mean();
+        double stddev = stddev();
+        return mean - (1.96 * stddev / Math.sqrt(totalTrials));
+     }
  
      // high endpoint of 95% confidence interval
-     public double confidenceHi()
+     public double confidenceHi() {
+        double mean = mean();
+        double stddev = stddev();
+        return mean + (1.96 * stddev / Math.sqrt(totalTrials));
+     }
  
     // test client (see below)
-    public static void main(String[] args)
+    public static void main(String[] args) {
+        int n = StdIn.readInt();
+        int trials = StdIn.readInt();
+
+        // instantiae the cass
+    }
 }
