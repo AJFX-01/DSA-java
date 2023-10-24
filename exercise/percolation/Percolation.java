@@ -2,7 +2,7 @@ package exercise.percolation;
 
 public class Percolation {
     // creates n-by-n grid, with all sites initially blocked
-    private boolean[][] grid;
+    
     private int gridsize;
     private boolean[] openSites;
     private int[] parent;
