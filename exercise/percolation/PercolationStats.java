@@ -24,20 +24,27 @@ public class PercolationStats {
             int openSites = 0;
             // iteracte through the process to check if the system percolates or not  
             while (!percolation.percolates()) {
-                // since it does not percoates 
+                // since it does not percolates, generate two round voice 
                 int row = StdRandom.uniformInt(1, n + 1);
                 int col = StdRandom.uniformInt(1, n + 1);
-                
+                // check if the site of the generated nymber are openedor not
                 if (!percolation.isOpen(row, col)) {
+                    // open it 
                     percolation.open(row, col);
+                    //addd it to the number of opensites 
                     openSites++;
                 }
             }
+            // set the threshold to the number of opensites divided by the gridesize
+            double threshold = (double) openSites / ( n * n );
+            thresholds[t] = threshold;
         }
      }
 
      // sample mean of percolation threshold
-     public double mean()
+     public double mean() {
+
+     }
  
      // sample standard deviation of percolation threshold
      public double stddev()
