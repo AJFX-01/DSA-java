@@ -149,3 +149,70 @@ public class Percolation {
 
     }
 }
+
+
+
+
+
+/////
+public class PercolationStats {
+    private double[] thresholds;
+    private int totalTrials;
+
+    public PercolationStats(int n, int trials) {
+        if (n <= 0 || trials <= 0) {
+            throw new IllegalArgumentException("Grid size and number of trials must be greater than 0.");
+        }
+
+        totalTrials = trials;
+        thresholds = new double[trials];
+
+        for (int t = 0; t < trials; t++) {
+            Percolation percolation = new Percolation(n);
+            int openSites = 0;
+
+            while (!percolation.percolates()) {
+                int row = StdRandom.uniform(1, n + 1);
+                int col = StdRandom.uniform(1, n + 1);
+
+                if (!percolation.isOpen(row, col)) {
+                    percolation.open(row, col);
+                    openSites++;
+                }
+            }
+
+            double threshold = (double) openSites / (n * n);
+            thresholds[t] = threshold;
+        }
+    }
+
+    public double mean() {
+        return StdStats.mean(thresholds);
+    }
+
+    public double stddev() {
+        return StdStats.stddev(thresholds);
+    }
+
+    public double confidenceLo() {
+        double mean = mean();
+        double stddev = stddev();
+        return mean - (1.96 * stddev / Math.sqrt(totalTrials));
+    }
+
+    public double confidenceHi() {
+        double mean = mean();
+        double stddev = stddev();
+        return mean + (1.96 * stddev / Math.sqrt(totalTrials));
+    }
+
+    public static void main(String[] args) {
+        int n = 5; // Change this to your desired grid size.
+        int trials = 100; // Change this to the number of trials you want to run.
+        PercolationStats stats = new PercolationStats(n, trials);
+
+        System.out.println("Mean: " + stats.mean());
+        System.out.println("Standard Deviation: " + stats.stddev());
+        System.out.println("95% Confidence Interval: [" + stats.confidenceLo() + ", " + stats.confidenceHi() + "]");
+    }
+}
