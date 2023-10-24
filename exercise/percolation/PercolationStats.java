@@ -11,7 +11,7 @@ public class PercolationStats {
      // perform independent trials on an n-by-n grid
      public PercolationStats(int n, int trials) throws IllegalAccessException{
         // check if trails and gird size n
-        if ( trials <= 0 || n < 0) {
+        if ( trials <= 0 || n <= 0) {
             throw new IllegalAccessException("invalid range of trais time or gride size");
         }
         // set tota tria times
