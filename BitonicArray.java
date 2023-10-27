@@ -2,7 +2,7 @@ package exercise;
 
 public class BitonicArray {
     
-    public static boolean BitonicArray(int[] nums, int traget) {
+    public static boolean bitonicArray(int[] nums, int traget) {
 
         int peakIndex = findPeak(nums);
 
