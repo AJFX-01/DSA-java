@@ -21,10 +21,10 @@ public class BinarySearch {
             // find the mid point of the array
             int midpoint = start + (end - start) / 2;
             if (key < a[midpoint]) {
-                start = midpoint - 1;
+                end = midpoint - 1;
             }
             else if (key > a[midpoint]) {
-                end = midpoint + 1;
+                start = midpoint + 1;
             }
             else {
                 return midpoint;
