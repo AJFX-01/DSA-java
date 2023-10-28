@@ -1,5 +1,5 @@
 package exercise;
-
+x
 public class BitonicArray {
     
     public static boolean bitonicArray(int[] nums, int traget) {
