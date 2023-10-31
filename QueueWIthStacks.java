@@ -24,10 +24,5 @@ public class QueueWIthStacks<T>{
         return stack2.pop();
     }
 
-    public static void main(String[] args) {
-        QueueWIthStacks<Integer> queue = new QueueWIthStacks<>();
-
-        queue.enqueue(1);
-        d
-    }
+    
 }
