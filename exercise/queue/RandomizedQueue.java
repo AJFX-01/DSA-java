@@ -3,7 +3,9 @@ package exercise.queue;
 public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // construct an empty randomized queue
-    public RandomizedQueue()
+    public RandomizedQueue() {
+        
+    }
 
     // is the randomized queue empty?
     public boolean isEmpty()
