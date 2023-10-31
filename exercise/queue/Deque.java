@@ -101,8 +101,21 @@ public class Deque<Item> implements Iterable<Item> {
     // remove and return the item from the back
     public Item removeLast() {
         if( isEmpty()) {
-            
+           throw new NoSuchElementException("Deque is empty"); 
         }
+
+        Item item = last.item;
+        last.prev = last;
+        size--;
+
+        if(isEmpty()){
+            first = null;
+        } else {
+            last.next = null;
+        }
+
+        return item;
+
     }
 
     // return an iterator over items in order from front to back
