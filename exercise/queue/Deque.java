@@ -66,10 +66,20 @@ public class Deque<Item> implements Iterable<Item> {
         newNode.prev = last; 
         newNode.next = null;
 
+        if (isEmpty()) {
+            first = newNode;
+        } else {
+            last.next = newNode; 
+        }
+        last = newNode;
+        size++;
+
     }
 
     // remove and return the item from the front
-    public Item removeFirst()
+    public Item removeFirst() {
+        
+    }
 
     // remove and return the item from the back
     public Item removeLast()
