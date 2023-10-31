@@ -2,10 +2,7 @@ package exercise.queue;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
-import org.w3c.dom.Node;
-
-import edu.princeton.cs.algs4.StdIn;
+import java.util.Scanner;
 
 public class Deque<Item> implements Iterable<Item> {
 
@@ -30,9 +27,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     // is the deque empty?
     public boolean isEmpty() {
-        if (size == 0) {
-            return true; 
-        }
+       return size == 0;
     }
 
     // return the number of items on the deque
@@ -151,10 +146,38 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     // unit testing (required)
-    public static void main(String[] args) {} {
-        Deque<Integer> dupe = new Deque<Integer>();
+    public static void main(String[] args) {
+        Deque<Integer> deque = new Deque<Integer>();
+        Scanner scanner = new Scanner(System.in);
 
-       
-    } 
+        while (scanner.hasNext()) {
+            String command = scanner.next();
+            if (command.equals("addFirst")) {
+                int item = scanner.nextInt();
+                deque.addFirst(item);
+            } else if (command.equals("addLast")) {
+                int item = scanner.nextInt();
+                deque.addLast(item);
+            } else if (command.equals("removeFirst")) {
+                Integer removedItem = deque.removeFirst();
+                if (removedItem != null) {
+                    System.out.println("Removed: " + removedItem);
+                } else {
+                    System.out.println("Deque is empty");
+                }
+            } else if (command.equals("removeLast")) {
+                Integer removedItem = deque.removeLast();
+                if (removedItem != null) {
+                    System.out.println("Removed: " + removedItem);
+                } else {
+                    System.out.println("Deque is empty");
+                }
+            } else if (command.equals("exit")) {
+                break;
+            } else {
+                System.out.println("Invalid command");
+            }
+        }
+    }
 
 }
