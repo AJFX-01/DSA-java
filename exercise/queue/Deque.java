@@ -5,6 +5,8 @@ import java.util.NoSuchElementException;
 
 import org.w3c.dom.Node;
 
+import edu.princeton.cs.algs4.StdIn;
+
 public class Deque<Item> implements Iterable<Item> {
 
     // the variabe to store the first and last eement and the size
@@ -150,7 +152,11 @@ public class Deque<Item> implements Iterable<Item> {
 
     // unit testing (required)
     public static void main(String[] args) {} {
-        Deque<Integer>
+        Deque<Integer> dupe = new Deque<Integer>();
+
+        Item[] inpiut = StdIn.
+        
+        for (string inpiut)
     } 
 
 }
