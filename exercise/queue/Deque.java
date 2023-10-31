@@ -1,5 +1,6 @@
 package exercise.queue;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import org.w3c.dom.Node;
@@ -108,7 +109,7 @@ public class Deque<Item> implements Iterable<Item> {
         last.prev = last;
         size--;
 
-        if(isEmpty()){
+        if(last == null ){
             first = null;
         } else {
             last.next = null;
@@ -119,9 +120,37 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     // return an iterator over items in order from front to back
-    public Iterator<Item> iterator()
+    public Iterator<Item> iterator() {
+
+        return new DequeIterator();
+    }
+
+    private class DequeIterator implements Iterator<Item>{
+    
+        private Node current = first;
+
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException("remove");
+        }
+
+        public Item next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("No more eement")
+            }
+
+            Item item = current.item;
+            current = current.next;
+            return item;
+        }
+    }
 
     // unit testing (required)
-    public static void main(String[] args)
+    public static void main(String[] args) {} {
+        Deque<Integer>
+    } 
 
 }
