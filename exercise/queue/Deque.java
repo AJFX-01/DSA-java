@@ -61,9 +61,10 @@ public class Deque<Item> implements Iterable<Item> {
         if (item == null) {
             throw new IllegalAccessError("can add a nu value");
         }
-        
         Node newNode = new Node();
-        
+        newNode.item = item;
+        newNode.prev = last; 
+        newNode.next = null;
 
     }
 
