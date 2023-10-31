@@ -27,4 +27,12 @@ public class StacksDs {
         return poppedValue;
     } 
 
+    public Double getMax() {
+        if(maxStack.isEmpty()) {
+            return null;
+        }
+
+        return maxStack.peek();
+    }
+
 }
