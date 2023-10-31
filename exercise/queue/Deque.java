@@ -1,5 +1,7 @@
 package exercise.queue;
 
+import java.util.NoSuchElementException;
+
 import org.w3c.dom.Node;
 
 public class Deque<Item> implements Iterable<Item> {
@@ -78,11 +80,30 @@ public class Deque<Item> implements Iterable<Item> {
 
     // remove and return the item from the front
     public Item removeFirst() {
-        
+        if (isEmpty()) {
+            throw new NoSuchElementException("no within range or item is empty")
+        }
+
+        Item item = first.item;
+        first.next = first;
+        size--;
+
+        if (isEmpty()) {
+            last = null;
+        } else {
+            first.prev = null;
+        }
+       
+        return item;
+
     }
 
     // remove and return the item from the back
-    public Item removeLast()
+    public Item removeLast() {
+        if( isEmpty()) {
+            
+        }
+    }
 
     // return an iterator over items in order from front to back
     public Iterator<Item> iterator()
