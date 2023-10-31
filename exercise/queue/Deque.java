@@ -84,7 +84,7 @@ public class Deque<Item> implements Iterable<Item> {
     // remove and return the item from the front
     public Item removeFirst() {
         if (isEmpty()) {
-            throw new NoSuchElementException("no within range or item is empty")
+            throw new NoSuchElementException("no within range or item is empty");
         }
 
         Item item = first.item;
@@ -141,7 +141,7 @@ public class Deque<Item> implements Iterable<Item> {
 
         public Item next() {
             if (!hasNext()) {
-                throw new NoSuchElementException("No more eement")
+                throw new NoSuchElementException("No more eement");
             }
 
             Item item = current.item;
@@ -154,9 +154,7 @@ public class Deque<Item> implements Iterable<Item> {
     public static void main(String[] args) {} {
         Deque<Integer> dupe = new Deque<Integer>();
 
-        Item[] inpiut = StdIn.
-        
-        for (string inpiut)
+       
     } 
 
 }
