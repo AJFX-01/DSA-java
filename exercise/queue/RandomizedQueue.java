@@ -29,7 +29,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     // add the item
-    public void enqueue(Item item) {
+    public void enqueue(Item item) throws IllegalAccessException {
         if(item == null) { 
             throw new IllegalAccessException("cannot add a nu vaue");
         } 
@@ -41,7 +41,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     // remove and return a random item
-    public Item dequeue(){
+    public Item dequeue() throws IllegalAccessException{
         if(isEmpty()) {
             throw new IllegalAccessException("the queue is empty");
         }
@@ -61,7 +61,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
 
     // return a random item (but do not remove it)
-    public Item sample() {
+    public Item sample() throws IllegalAccessException {
         if (isEmpty()) {
             throw new IllegalAccessException("Exception error");
         }
@@ -74,28 +74,30 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     // return an independent iterator over items in random order
     public Iterator<Item> iterator() {
 
+        return new RandomizedQueueIterrator();
+
     }
 
     private class RandomizedQueueIterrator implements Iterator<Item> {
 
         private int currentIndex;
-        private final int[] RandomIndexes;
+        private final int[] randomIndexes;
         
-        public RandomizedQueueIterator() {
+        public RandomizedQueueIterrator() {
             currentIndex = 0;
-            RandomIndexes = new int[size];
+            randomIndexes = new int[size];
             for (int i = 0; i < size; i++ ) {
-                RandomIndexes[i] = i;
+                randomIndexes[i] = i;
             }
 
             // shuffe arofound the indexes
 
             for (int i = size - 1; i > 0; i--) {
                 int j = random.nextInt( i + 1);
-                int temp = RandomIndexes[i];
+                int temp = randomIndexes[i];
                 
-                RandomIndexes[i] = RandomIndexes[j];
-                RandomIndexes[j] = temp; 
+                randomIndexes[i] = randomIndexes[j];
+                randomIndexes[j] = temp; 
             }
         } 
 
@@ -105,14 +107,14 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
         public Item next() {
             if(!hasNext()) {
-                throw new NoSuchElementException("No more eeemnt in st")
+                throw new NoSuchElementException("No more eeemnt in st");
             }
 
-            return items[RandomIndexes[currentIndex++]];
+            return items[randomIndexes[currentIndex++]];
         } 
 
         public void remove() {
-            throw new UnsupportedOperationException("Remova not aowed")  
+            throw new UnsupportedOperationException("Remova not aowed");  
         }
     }
 
@@ -126,6 +128,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     // unit testing (required)
-    public static void main(String[] args)
+    public static void main(String[] args){
+
+    }
 
 }
