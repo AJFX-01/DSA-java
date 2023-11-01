@@ -1,5 +1,7 @@
 package exercise.queue;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
@@ -41,7 +43,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     // remove and return a random item
     public Item dequeue(){
         if(isEmpty()) {
-            throw new IllegalAccessException("the queue is empty")
+            throw new IllegalAccessException("the queue is empty");
         }
 
         int RandomIndex =  random.nextInt(size);
@@ -70,7 +72,49 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     // return an independent iterator over items in random order
-    public Iterator<Item> iterator()
+    public Iterator<Item> iterator() {
+
+    }
+
+    private class RandomizedQueueIterrator implements Iterator<Item> {
+
+        private int currentIndex;
+        private final int[] RandomIndexes;
+        
+        public RandomizedQueueIterator() {
+            currentIndex = 0;
+            RandomIndexes = new int[size];
+            for (int i = 0; i < size; i++ ) {
+                RandomIndexes[i] = i;
+            }
+
+            // shuffe arofound the indexes
+
+            for (int i = size - 1; i > 0; i--) {
+                int j = random.nextInt( i + 1);
+                int temp = RandomIndexes[i];
+                
+                RandomIndexes[i] = RandomIndexes[j];
+                RandomIndexes[j] = temp; 
+            }
+        } 
+
+        public boolean hasNext() {
+            return currentIndex < size;
+        }
+
+        public Item next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException("No more eeemnt in st")
+            }
+
+            return items[RandomIndexes[currentIndex++]];
+        } 
+
+        public void remove() {
+            throw new UnsupportedOperationException("Remova not aowed")  
+        }
+    }
 
 
     private void resize(int capacity) {
